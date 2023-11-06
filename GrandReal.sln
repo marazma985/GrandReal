@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandReal", "GrandReal\GrandReal.csproj", "{CFB39A9E-956E-475F-815A-53633941A102}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFB39A9E-956E-475F-815A-53633941A102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB39A9E-956E-475F-815A-53633941A102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB39A9E-956E-475F-815A-53633941A102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB39A9E-956E-475F-815A-53633941A102}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86CE1A9B-C185-43BA-A500-3999E4A2023C}
+	EndGlobalSection
+EndGlobal

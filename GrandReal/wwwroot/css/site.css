@@ -1,0 +1,339 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+}
+.container-header {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 15%;
+    padding-left: 15%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*#region Инпуты*/
+.text-field {
+    margin-bottom: 1rem;
+}
+
+.text-field__label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.text-field__input {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+    .text-field__input[type="search"]::-webkit-search-decoration,
+    .text-field__input[type="search"]::-webkit-search-cancel-button,
+    .text-field__input[type="search"]::-webkit-search-results-button,
+    .text-field__input[type="search"]::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+    }
+
+    .text-field__input::placeholder {
+        color: #212529;
+        opacity: 0.4;
+    }
+
+    .text-field__input:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #bdbdbd;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    }
+
+    .text-field__input:disabled,
+    .text-field__input[readonly] {
+        background-color: #f5f5f5;
+        opacity: 1;
+    }
+
+.text-field_floating-3 {
+    position: relative;
+}
+
+    .text-field_floating-3 .text-field__input {
+        border: none;
+        border-bottom: 1px solid #bdbdbd;
+        border-radius: 0;
+        border-radius: 0.4rem;
+        height: calc(2.5rem + 2px);
+        line-height: 1.25;
+        padding: 1rem 0.75rem;
+        background-color: #f5f5f5;
+    }
+
+        .text-field_floating-3 .text-field__input:focus {
+            outline: 0;
+            border-bottom: 1px solid #03a9f4;
+            box-shadow: none;
+            background-color: #eee;
+        }
+
+    .text-field_floating-3 .text-field__label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 0.6rem .75rem;
+        pointer-events: none;
+        border: 1px solid transparent;
+        transform-origin: 0 0;
+        transition: color .15s ease-in-out, transform .15s ease-in-out;
+    }
+
+    .text-field_floating-3 .text-field__input::-moz-placeholder {
+        color: transparent;
+    }
+
+    .text-field_floating-3 .text-field__input::placeholder {
+        color: transparent;
+    }
+
+    .text-field_floating-3 .text-field__input:focus,
+    .text-field_floating-3 .text-field__input:not(:placeholder-shown) {
+        padding-top: 1.625rem;
+        padding-bottom: .625rem;
+        border-bottom: 1px solid #03a9f4;
+    }
+
+    .text-field_floating-3 .text-field__input:focus ~ .text-field__label,
+    .text-field_floating-3 .text-field__input:not(:placeholder-shown) ~ .text-field__label {
+         transform: scale(.80) translateY(-.75rem) translateX(.15rem);
+         color: #03a9f4;
+    }
+.parentDivAuth{
+    height:85vh;
+    position:relative;
+}
+.childDivAuth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 40%;
+}
+/*#endregion Инпуты*/
+
+/*#region Переключатель*/
+.checkbox-green {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    margin-right: 10px;
+    position: relative;
+    vertical-align: middle;
+    font-size: 14px;
+    user-select: none;
+}
+
+    .checkbox-green .checkbox-green-switch {
+        display: inline-block;
+        height: 35px;
+        width: 200px;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 2px;
+        background: #0d6efd;
+        transition: background-color 0.3s cubic-bezier(0, 1, 0.5, 1);
+    }
+
+        .checkbox-green .checkbox-green-switch:before {
+            content: attr(data-label-on);
+            display: inline-block;
+            box-sizing: border-box;
+            width: 100px;
+            padding: 0 12px;
+            position: absolute;
+            top: 0;
+            left: 100px;
+            text-transform: uppercase;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 10px;
+            font-weight:bold;
+            line-height: 33px;
+        }
+
+        .checkbox-green .checkbox-green-switch:after {
+            content: attr(data-label-off);
+            display: inline-block;
+            box-sizing: border-box;
+            width: 100px;
+            border-radius: 1px;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            z-index: 5;
+            text-transform: uppercase;
+            text-align: center;
+            background: white;
+            line-height: 33px;
+            font-size: 10px;
+            font-weight: bold;
+            color: #777;
+            transition: transform 0.3s cubic-bezier(0, 1, 0.5, 1);
+        }
+
+    .checkbox-green input[type="checkbox"] {
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+        .checkbox-green input[type="checkbox"]:checked + .checkbox-green-switch {
+            background-color: #0d9efd;
+        }
+
+            .checkbox-green input[type="checkbox"]:checked + .checkbox-green-switch:before {
+                content: attr(data-label-off);
+                left: 0;
+            }
+
+            .checkbox-green input[type="checkbox"]:checked + .checkbox-green-switch:after {
+                content: attr(data-label-on);
+                color: #0d6efd;
+                transform: translate3d(98px, 0, 0);
+            }
+
+        /* Hover */
+        .checkbox-green input[type="checkbox"]:not(:disabled) + .checkbox-green-switch:hover {
+            cursor: pointer;
+        }
+
+            .checkbox-green input[type="checkbox"]:not(:disabled) + .checkbox-green-switch:hover:after {
+                box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+            }
+
+    /* Disabled */
+    .checkbox-green input[type=checkbox]:disabled + .checkbox-green-switch {
+        opacity: 0.6;
+        filter: grayscale(50%);
+    }
+
+    /* Focus */
+    .checkbox-green.focused .checkbox-green-switch:after {
+        box-shadow: inset 0px 0px 4px #ff5623;
+    }
+/*#endregion Переключатель*/
+
+/*#region лайка*/
+.liked {
+    position: relative;
+}
+
+.liked i {
+    cursor: pointer;
+    height:30px;
+    display: inline-block;
+    color: #aaa;
+    transition: .2s;
+}
+
+.liked i:hover {
+    color: #666;
+}
+
+.liked i:before {
+    font-family: fontawesome;
+    font-size: 25px;
+    content: '\f004';
+    font-style: normal;
+}
+
+.liked span {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    transition: .6s;
+    z-index: -2;
+    font-size: 2px;
+    color: transparent;
+    font-weight: 400;
+}
+
+.liked i.press {
+    animation: size .4s;
+    color: #e23b3b;
+}
+
+.liked span.press {
+    font-size: 14px;
+    visibility: visible;
+    animation: fade 1s;
+}
+
+@keyframes fade {
+    0% {
+        opacity:0;
+    }
+
+    50% {
+        color: #e23b3b;
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes size {
+    0% {
+        /*font-size:25px;*/
+    }
+
+    50% {
+        /*font-size: 30px;*/
+    }
+
+    100% {
+        /*font-size: 25px;*/
+    }
+}
+/*#endregion лайка*/

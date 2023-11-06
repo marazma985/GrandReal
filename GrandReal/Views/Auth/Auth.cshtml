@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Auth";
+    
+}
+@model GrandReal.DBconnection.Client;
+<div class="parentDivAuth">
+    <div class="mx-auto shadow p-3 rounded childDivAuth">
+        <h2 class="text-center">Grand Realt</h2>
+        <div class="w-50 mx-auto">
+            <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">   
+                <div class="form">
+
+                    <div class="registerForm" style="display:none;">
+
+                        <div class="text-field text-field_floating-3">
+                            <input name="SurnameClient" class="text-field__input" placeholder="">
+                            <label class="text-field__label" for="login">Фаммилия</label>
+                        </div>
+                        <div class="text-field text-field_floating-3">
+                            <input name="NameClient" class="text-field__input" placeholder="">
+                            <label class="text-field__label" for="login">Имя</label>
+                        </div>
+                        <div class="text-field text-field_floating-3">
+                            <input name="PatronymicClient" class="text-field__input" placeholder="">
+                            <label class="text-field__label" for="login">Отчество</label>
+                        </div>
+                        <div class="text-field text-field_floating-3">
+                            <input name="RequisitesClient" class="text-field__input" placeholder="">
+                            <label class="text-field__label" for="login">Серия номер паспорта</label>
+                        </div>
+                        <div class="text-field text-field_floating-3">
+                            <input name="EmailClient" class="text-field__input" placeholder="">
+                            <label class="text-field__label" for="login">Эл. почта</label>
+                        </div>
+                    </div>
+
+                    <div class="text-field text-field_floating-3">
+                        <input name="PhoneClient" class="text-field__input" placeholder="Номер телефона" value="123">
+                        <label class="text-field__label" for="login">Номер телефона</label>
+                    </div>
+
+                    <div class="text-field text-field_floating-3">
+                        <input name="PasswordClient" class="text-field__input" placeholder="Пароль" type="password" value="123">
+                        <label class="text-field__label" for="password">Пароль</label>
+                    </div>
+
+                    
+
+                </div>
+                
+
+                <div class="text-field text-field_floating-3">
+                    <button id="sendLogin" class="btn btn-outline-primary ps-3 pe-3 mx-auto d-block">Войти</button>
+                </div>
+
+                <label class="checkbox-green">
+                    <input type="checkbox" id="loginOrRegister">
+                    <span class="checkbox-green-switch" data-label-on="Регистрация" data-label-off="Вход"></span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/js/auth.js" charset="utf-8" type="text/javascript"></script>
+</div>
+
+

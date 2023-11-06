@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Объекты недвижимости";
+}
+@model GrandReal.Models.ObjectsModel;
+<div class="container">
+    <h1>Объекты недвижимости</h1>
+
+    @foreach (var item in Model.Objects)
+    {
+        var idCarousel = $"carouselObject{item.IdObject}";
+
+        <div class="objectCard d-flex justify-content-between mb-5" style="border-radius:15px;overflow: hidden">
+
+            @* <div style="width:40%; height:250px;">
+                <img src=@Url.Content("files/img/1/ob1im1.png") class="w-100" />
+            </div> *@
+
+            <div id="@idCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width:40%; height:250px;">
+                <div class="carousel-indicators">
+                    @{
+                        var imageList = Model.ImagesObjects.Where(a => a.Object == item.IdObject).ToList().Select((imageItem, indexImage) => (imageItem, indexImage));
+                    }
+                    @foreach (var (imageItem, indexImage) in imageList)
+                    {
+                        <button type="button" data-bs-target="#@idCarousel" data-bs-slide-to="@indexImage" class="@(indexImage == 0 ? "active" : "")" aria-current="true" aria-label=""></button>
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @foreach (var (imageItem, indexImage) in imageList)
+                    {
+                        <div class="carousel-item @(indexImage == 0 ? "active" : "")">
+                            <img src=@Url.Content($"~/files/img/{item.IdObject}/{imageItem.NameImage}") class="d-block w-100" alt="Фото не найдено">
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#@idCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#@idCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="p-3 pb-1 w-75 d-flex flex-column">
+                <div style="height:20%">
+                    <h3 style="font-style: italic;">г. @item?.CityObject, ул. @item?.AddressObject</h3>
+                </div>
+
+                <div style="height:70%">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros. Quisque at magna neque. Nulla faucibus mi at nunc mattis placerat. Pellentesque quis augue quis elit tristique auctor.</p>
+                </div>
+
+                <div class="d-flex me-3 align-items-end justify-content-end" style="height:10%">
+
+                    <div id="@($"likedObject-{item?.IdObject}")" class="liked me-2">
+                        @{var liked = Model.FavoriteClintObjects.Contains(item.IdObject);}
+                        <i class="@(liked ? "press" :"")"></i>
+                        <span>liked!</span>
+                    </div>
+
+                    <button class="btn btn-outline-primary p-0" style="width:250px; height:30px;">Оставить заявку</button>
+                </div>
+            </div>
+
+        </div>
+    }
+
+    
+
+    <script src="~/js/objects.js" charset="utf-8" type="text/javascript"></script>
+</div>
+
+
