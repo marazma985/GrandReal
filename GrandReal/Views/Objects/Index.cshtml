@@ -11,10 +11,6 @@
 
         <div class="objectCard d-flex justify-content-between mb-5" style="border-radius:15px;overflow: hidden">
 
-            @* <div style="width:40%; height:250px;">
-                <img src=@Url.Content("files/img/1/ob1im1.png") class="w-100" />
-            </div> *@
-
             <div id="@idCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="width:40%; height:250px;">
                 <div class="carousel-indicators">
                     @{
@@ -22,7 +18,10 @@
                     }
                     @foreach (var (imageItem, indexImage) in imageList)
                     {
-                        <button type="button" data-bs-target="#@idCarousel" data-bs-slide-to="@indexImage" class="@(indexImage == 0 ? "active" : "")" aria-current="true" aria-label=""></button>
+                        <button type="button" data-bs-target="#@idCarousel" 
+                        data-bs-slide-to="@indexImage" class="@(indexImage == 0 ? "active" : "")"
+                        aria-current="true" aria-label="">
+                        </button>
                     }
                 </div>
                 <div class="carousel-inner">
@@ -43,13 +42,18 @@
                 </button>
             </div>
 
-            <div class="p-3 pb-1 w-75 d-flex flex-column">
-                <div style="height:20%">
-                    <h3 style="font-style: italic;">г. @item?.CityObject, ул. @item?.AddressObject</h3>
+            <div class="p-3 pb-1 w-75 d-flex flex-column mb-2">
+                <div style="height:20%" class="d-flex justify-content-between">
+                    <h3 style="font-style: italic; Letter-spacing:2px;">
+                        @(item.Rooms != 0 ? item.Rooms + "-к." : "")
+                        @item.Type @(item.LivingArea != 0 ? item.LivingArea: item.PlotArea)м<sup>2</sup>
+                        @item.Floors
+                        </h3>
+                    <h3 style="font-style: italic; Letter-spacing:2px;">@item.Cost</h3>
                 </div>
 
                 <div style="height:70%">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lectus risus, finibus ornare vestibulum et, feugiat quis dui. Vivamus sit amet dolor et magna facilisis rhoncus. Curabitur maximus est sed porta scelerisque. Sed suscipit, arcu volutpat feugiat posuere, eros nisi tristique nibh, mollis vehicula lectus tortor eu purus. Donec ut tortor blandit, sagittis diam eget, suscipit eros. Quisque at magna neque. Nulla faucibus mi at nunc mattis placerat. Pellentesque quis augue quis elit tristique auctor.</p>
+                    <p>@item.FullAddress</p>
                 </div>
 
                 <div class="d-flex me-3 align-items-end justify-content-end" style="height:10%">

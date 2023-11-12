@@ -25,12 +25,14 @@ public partial class GrandrealContext : DbContext
 
     public virtual DbSet<Object> Objects { get; set; }
 
+    public virtual DbSet<ObjectView> ObjectViews { get; set; }
+
     public virtual DbSet<Staff> Staff { get; set; }
 
     public virtual DbSet<TypeObject> TypeObjects { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("server=localhost;database=grandreal;user=root;password=Marmel985.", ServerVersion.Parse("8.0.33-mysql"));
+        => optionsBuilder.UseMySql("server=localhost;database=grandreal;user=root;password=Marmel985.", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.34-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -174,18 +176,19 @@ public partial class GrandrealContext : DbContext
             entity.Property(e => e.DistrictObject)
                 .HasMaxLength(100)
                 .HasColumnName("district_object");
+            entity.Property(e => e.Flat).HasColumnName("flat");
             entity.Property(e => e.FloorObject).HasColumnName("floor_object");
             entity.Property(e => e.IdSobObject).HasColumnName("idSob_object");
-            entity.Property(e => e.LivingAreaObject)
-                .HasMaxLength(40)
-                .HasColumnName("livingArea_object");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("is_active");
+            entity.Property(e => e.LivingAreaObject).HasColumnName("livingArea_object");
             entity.Property(e => e.NumRoomsObject).HasColumnName("numRooms_object");
-            entity.Property(e => e.PlotAreaObject)
-                .HasMaxLength(40)
-                .HasColumnName("plotArea_object");
+            entity.Property(e => e.PlotAreaObject).HasColumnName("plotArea_object");
             entity.Property(e => e.PriceObject)
-                .HasPrecision(19, 5)
+                .HasPrecision(19, 2)
                 .HasColumnName("price_object");
+            entity.Property(e => e.TotalFloor).HasColumnName("total_floor");
             entity.Property(e => e.TypeObject).HasColumnName("type_object");
 
             entity.HasOne(d => d.IdSobObjectNavigation).WithMany(p => p.Objects)
@@ -195,6 +198,43 @@ public partial class GrandrealContext : DbContext
             entity.HasOne(d => d.TypeObjectNavigation).WithMany(p => p.Objects)
                 .HasForeignKey(d => d.TypeObject)
                 .HasConstraintName("type");
+        });
+
+        modelBuilder.Entity<ObjectView>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("object_view");
+
+            entity.Property(e => e.Address)
+                .HasMaxLength(100)
+                .HasColumnName("address");
+            entity.Property(e => e.City)
+                .HasMaxLength(100)
+                .HasColumnName("city");
+            entity.Property(e => e.Cost)
+                .HasMaxLength(62)
+                .HasColumnName("cost");
+            entity.Property(e => e.District)
+                .HasMaxLength(100)
+                .HasColumnName("district");
+            entity.Property(e => e.Flat).HasColumnName("flat");
+            entity.Property(e => e.Floors)
+                .HasMaxLength(27)
+                .HasColumnName("floors");
+            entity.Property(e => e.FullAddress)
+                .HasMaxLength(313)
+                .HasColumnName("full_address");
+            entity.Property(e => e.IdObject).HasColumnName("id_object");
+            entity.Property(e => e.IsActive)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("is_active");
+            entity.Property(e => e.LivingArea).HasColumnName("living_area");
+            entity.Property(e => e.PlotArea).HasColumnName("plot_area");
+            entity.Property(e => e.Rooms).HasColumnName("rooms");
+            entity.Property(e => e.Type)
+                .HasMaxLength(50)
+                .HasColumnName("type");
         });
 
         modelBuilder.Entity<Staff>(entity =>

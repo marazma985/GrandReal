@@ -13,11 +13,15 @@ public partial class Object
 
     public int? NumRoomsObject { get; set; }
 
-    public string? LivingAreaObject { get; set; }
+    public int? LivingAreaObject { get; set; }
 
-    public string? PlotAreaObject { get; set; }
+    public int? PlotAreaObject { get; set; }
 
     public int? FloorObject { get; set; }
+
+    public int? TotalFloor { get; set; }
+
+    public int? Flat { get; set; }
 
     public int? IdSobObject { get; set; }
 
@@ -26,6 +30,8 @@ public partial class Object
     public string? DistrictObject { get; set; }
 
     public string? AddressObject { get; set; }
+
+    public int? IsActive { get; set; }
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 

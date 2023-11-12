@@ -35,7 +35,7 @@
                     </ul>
                 </div>
                 <div id="userAuth" class="d-flex">
-                    <p id="userName" class="mb-0 mt-2 me-4" > Фио пользователя</p>
+                    <p id="userName" class="mb-0 mt-2 me-4" ></p>
                     <button id="toLogin" class="btn btn-outline-primary ps-3 pe-3">Выход</button>
                 </div>
             </div>
@@ -47,6 +47,22 @@
         </main>
     </div>
 
+    <div class="myModalBackground myModalHide">
+        <div class="myModal">
+            <div class="titleModal">
+                <h4 class="m-0 p-0">Внимание</h4>
+                <div class="cross" onclick="closeMyAlert()"></div>
+            </div>
+            <div class="bodyModal">
+                <p class="fs-5">Произошёл сбой</p>
+            </div>
+            <div class="footerModal">
+                <button class="btn btn-outline-primary px-3 py-1 mx-3" onclick="closeMyAlert()">Отмена</button>
+                <button class="btn btn-primary px-3 py-1">Продолжить</button>
+            </div>
+        </div>
+    </div>
+
     @* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - GrandReal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -55,6 +71,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/helper.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

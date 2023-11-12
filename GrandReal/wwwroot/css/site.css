@@ -32,6 +32,9 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+.objectCard {
+    box-shadow: 5px 5px 12px 3px rgba(34, 60, 80, 0.2);
+}
 
 /*#region Инпуты*/
 .text-field {
@@ -337,3 +340,80 @@ body {
     }
 }
 /*#endregion лайка*/
+
+/*#region Модальное окно*/
+.myModalShow {
+    display: flex;
+    opacity: 1;
+    transition: all 0.3s ease-out;
+}
+.myModalHide {
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+.myModalBackground {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    z-index:100;
+}
+
+.myModal {
+    width: 500px;
+    height: auto;
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: 0px 0px 50px 25px rgba(34, 60, 80, 0.2);
+
+}
+
+.titleModal {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 10px 25px;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bodyModal {
+    flex: 8;
+    padding: 5px 25px;
+}
+
+.bodyModal p {
+    padding: 10px 0;
+    margin: 0;
+}
+
+.footerModal {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    flex: 1;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: end;
+}
+.cross:after {
+    content: "\00d7";
+    font-size: 20px;
+    line-height: 0px;
+    
+    font-weight:bold;
+    padding: 0px 4px;
+    margin: 0px;
+}
+
+.cross {
+    border: 2px solid gray;
+    border-radius: 7px;
+    cursor: pointer;
+}
+/*#endregion Модальное окно*/

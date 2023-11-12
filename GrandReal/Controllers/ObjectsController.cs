@@ -26,9 +26,10 @@ namespace GrandReal.Controllers
                 return View("../Auth/Auth");
             #endregion
 
-            var objects = context.Objects.ToList();
+            var objects = context.ObjectViews.Where(a=>a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.ToList();
             var favoriteClintObjects = context.FavoriteClintObjects.Where(a=>a.Client == idUser).Select(a=>a.Object).ToList();
+            
 
             var model = new ObjectsModel()
             {
@@ -116,7 +117,7 @@ namespace GrandReal.Controllers
             #endregion
 
             var favoriteClintObjects = context.FavoriteClintObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();
-            var objects = context.Objects.Where(a=> favoriteClintObjects.Contains(a.IdObject)).ToList();
+            var objects = context.ObjectViews.Where(a => favoriteClintObjects.Contains(a.IdObject) && a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.Where(a=> favoriteClintObjects.Contains(a.Object)).ToList();
 
             var model = new ObjectsModel()
@@ -125,7 +126,7 @@ namespace GrandReal.Controllers
                 ImagesObjects = imagesObjects,
                 FavoriteClintObjects = favoriteClintObjects
             };
-            return View("Index",model);
+            return View("Index", model);
         }
     }
 }
