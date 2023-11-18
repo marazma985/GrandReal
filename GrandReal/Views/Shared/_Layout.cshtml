@@ -10,37 +10,42 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GrandRealt</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    @* Что бы не проверять успешность конвертации в bool *@
+    @if (ViewData["Title"].ToString() != "Авторизация")
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GrandRealt</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            @* <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li> *@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="Index">Объекты недвижимости</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="FavoriteObjects">Избранные объекты</a>
-                        </li>
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="Index">Объекты недвижимости</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="FavoriteObjects">Избранные объекты</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="userAuth" class="d-flex">
+                        <p id="userName" class="mb-0 mt-2 me-4"></p>
+                        <button id="toLogin" class="btn btn-outline-primary ps-3 pe-3">Выход</button>
+                    </div>
                 </div>
-                <div id="userAuth" class="d-flex">
-                    <p id="userName" class="mb-0 mt-2 me-4" ></p>
-                    <button id="toLogin" class="btn btn-outline-primary ps-3 pe-3">Выход</button>
-                </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    }
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -53,8 +58,10 @@
                 <h4 class="m-0 p-0">Внимание</h4>
                 <div class="cross" onclick="closeMyAlert()"></div>
             </div>
-            <div class="bodyModal">
-                <p class="fs-5">Произошёл сбой</p>
+            <div class="bodyModal d-flex">
+                <img id="loadGif" src="~/img/load.gif" style="display:none; height:50px;" />
+                <div class="fs-5">Произошёл сбой</div>
+                <p class="fs-5"></p>
             </div>
             <div class="footerModal">
                 <button class="btn btn-outline-primary px-3 py-1 mx-3" onclick="closeMyAlert()">Отмена</button>

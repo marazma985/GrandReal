@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 	$('#sendLogin').on("click", login);
 
-	$('header').hide();
 
 	//#region переключатель
 
@@ -27,26 +26,49 @@ onRegister = function () {
 	var value = $('#loginOrRegister').is(":checked");
 	$("#sendLogin").off("click");
 	if (value) {
+		//
 		$('.registerForm').show();
-		$('#sendLogin').text('Зарегистрироваться');
+		$('#sendLogin').text('...');
+		$('.registerForm').addClass('h-auto-transition');
+		$('.registerForm').removeClass('h-none-transition');
+		
 		$('#sendLogin').on("click", register);
+
+		setTimeout(function () {
+			$('#sendLogin').text('Зарегистрироваться');
+		}, 500)
 	}
 	else {
-		$('.registerForm').hide();
-		$('#sendLogin').text('Войти');
+		$('.registerForm').addClass('h-none-transition');
+		$('.registerForm').removeClass('h-auto-transition');
+		
+		$('#sendLogin').text('...');
 		$('#sendLogin').on("click", login);
+		setTimeout(function () {
+			$('.registerForm').hide();
+			$('#sendLogin').text('Войти');
+		}, 500)
 	}
 		
 }
 login = function () {
+	if (!checkInputRequired($('.form')))
+		return;
+
 	var dataFrom = getObjectFromForm($('.form'));
 	$.ajax({
 		url: '/Auth/login',
 		method: 'post',
-		data: dataFrom ,
+		data: dataFrom,
+		beforeSend: function () {
+			$('#loadGif').show();
+			myModalAlert('Обработка запроса...')
+		},
 		success: function (data) {
-			if (data.error)
-				alert(data.error);
+
+			if (data.error) {
+				myModalAlert(data.error);
+			}
 			else {
 				localStorage.setItem('userName', `${data.surnameClient} ${data.nameClient[0]}. ${data.patronymicClient[0]}.`);
 				document.cookie = `idUser=${data.idClient}`;
@@ -57,6 +79,9 @@ login = function () {
 	});
 }
 register = function () {
+	if (!checkInputRequired($('.form')))
+		return;
+
 	var dataFrom = getObjectFromForm($('.form'));
 	$.ajax({
 		url: '/Auth/CreateClient',

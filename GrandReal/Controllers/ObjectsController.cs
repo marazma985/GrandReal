@@ -15,9 +15,7 @@ namespace GrandReal.Controllers
         
         public ObjectsController()
         {
-
             context = new GrandrealContext();
-
         }
         public ActionResult Index() 
         {
@@ -99,6 +97,8 @@ namespace GrandReal.Controllers
         /// </summary>
         /// <returns>int id user если пришло в куки и null если не пришло</returns>
         public int? checkAuth() {
+            //Не получится засунуть в конструктор, так как там контекст запроса не инициализирован
+
             if (HttpContext.Request.Cookies["idUser"] != null)
                 if (Int32.TryParse(HttpContext.Request.Cookies["idUser"], out int id))
                 {

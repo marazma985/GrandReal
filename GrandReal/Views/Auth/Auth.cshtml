@@ -1,23 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Auth";
+    ViewData["Title"] = "Авторизация";
     
 }
 @model GrandReal.DBconnection.Client;
 <div class="parentDivAuth">
-    <div class="mx-auto shadow p-3 rounded childDivAuth">
+    <div id="authRegisterDiv" class="mx-auto shadow p-3 rounded childDivAuth">
         <h2 class="text-center">Grand Realt</h2>
         <div class="w-50 mx-auto">
             <div style="max-width: 500px; margin-left: auto; margin-right: auto; padding: 15px;">   
                 <div class="form">
 
-                    <div class="registerForm" style="display:none;">
+                    <div class="registerForm h-none-transition" @* style="display:none;" *@>
 
                         <div class="text-field text-field_floating-3">
-                            <input name="SurnameClient" class="text-field__input" placeholder="">
+                            <input name="SurnameClient" class="text-field__input" placeholder="" required>
                             <label class="text-field__label" for="login">Фаммилия</label>
                         </div>
                         <div class="text-field text-field_floating-3">
-                            <input name="NameClient" class="text-field__input" placeholder="">
+                            <input name="NameClient" class="text-field__input" placeholder="" required>
                             <label class="text-field__label" for="login">Имя</label>
                         </div>
                         <div class="text-field text-field_floating-3">
@@ -25,7 +25,7 @@
                             <label class="text-field__label" for="login">Отчество</label>
                         </div>
                         <div class="text-field text-field_floating-3">
-                            <input name="RequisitesClient" class="text-field__input" placeholder="">
+                            <input name="RequisitesClient" class="text-field__input" placeholder="" required>
                             <label class="text-field__label" for="login">Серия номер паспорта</label>
                         </div>
                         <div class="text-field text-field_floating-3">
@@ -35,12 +35,12 @@
                     </div>
 
                     <div class="text-field text-field_floating-3">
-                        <input name="PhoneClient" class="text-field__input" placeholder="Номер телефона" value="123">
+                        <input name="PhoneClient" class="text-field__input" placeholder="Номер телефона" value="123" required>
                         <label class="text-field__label" for="login">Номер телефона</label>
                     </div>
 
                     <div class="text-field text-field_floating-3">
-                        <input name="PasswordClient" class="text-field__input" placeholder="Пароль" type="password" value="123">
+                        <input name="PasswordClient" class="text-field__input" placeholder="Пароль" type="password" value="123" required>
                         <label class="text-field__label" for="password">Пароль</label>
                     </div>
 

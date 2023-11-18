@@ -12,6 +12,29 @@ html {
   position: relative;
   min-height: 100%;
 }
+a {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+
+a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+a:hover:after {
+    width: 100%;
+    left: 0;
+}
 
 body {
     margin-bottom: 60px;
@@ -155,6 +178,32 @@ body {
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     width: 40%;
+    height:auto;
+    transition: all .5s;
+    overflow:hidden;
+}
+.childDivRegister {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 40%;
+    height: auto;
+    max-height: 650px;
+    transition: all .5s;
+    overflow: hidden;
+}
+.h-auto-transition {
+    /*display:block;*/
+    opacity: 1;
+    max-height: 500px;
+    transition: all .5s;
+}
+.h-none-transition {
+    /*display:none;*/
+    opacity:0;
+    max-height: 0;
+    transition: all .5s;
 }
 /*#endregion Инпуты*/
 
@@ -343,16 +392,17 @@ body {
 
 /*#region Модальное окно*/
 .myModalShow {
-    display: flex;
     opacity: 1;
     transition: all 0.3s ease-out;
+    z-index: 100;
 }
 .myModalHide {
-    display: none;
     opacity: 0;
     transition: all 0.3s ease-out;
+    z-index: -1;
 }
 .myModalBackground {
+    display:flex;
     position: fixed;
     top:0;
     left:0;
@@ -361,7 +411,7 @@ body {
     background: rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: center;
-    z-index:100;
+    
 }
 
 .myModal {
