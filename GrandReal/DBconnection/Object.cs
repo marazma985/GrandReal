@@ -35,7 +35,7 @@ public partial class Object
 
     public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
-    public virtual ICollection<FavoriteClintObject> FavoriteClintObjects { get; set; } = new List<FavoriteClintObject>();
+    public virtual ICollection<FavoriteClientObject> FavoriteClientObjects { get; set; } = new List<FavoriteClientObject>();
 
     public virtual Client? IdSobObjectNavigation { get; set; }
 

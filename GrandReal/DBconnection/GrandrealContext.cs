@@ -21,7 +21,7 @@ public partial class GrandrealContext : DbContext
 
     public virtual DbSet<Contract> Contracts { get; set; }
 
-    public virtual DbSet<FavoriteClintObject> FavoriteClintObjects { get; set; }
+    public virtual DbSet<FavoriteClientObject> FavoriteClientObjects { get; set; }
 
     public virtual DbSet<ImagesObject> ImagesObjects { get; set; }
 
@@ -34,7 +34,6 @@ public partial class GrandrealContext : DbContext
     public virtual DbSet<TypeObject> TypeObjects { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=localhost;database=grandreal;user=root;password=Marmel985.", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.34-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -127,11 +126,11 @@ public partial class GrandrealContext : DbContext
                 .HasConstraintName("sta");
         });
 
-        modelBuilder.Entity<FavoriteClintObject>(entity =>
+        modelBuilder.Entity<FavoriteClientObject>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("favorite_clint_object");
+            entity.ToTable("favorite_client_object");
 
             entity.HasIndex(e => e.Client, "cli_idx");
 
@@ -143,11 +142,11 @@ public partial class GrandrealContext : DbContext
             entity.Property(e => e.Client).HasColumnName("client");
             entity.Property(e => e.Object).HasColumnName("object");
 
-            entity.HasOne(d => d.ClientNavigation).WithMany(p => p.FavoriteClintObjects)
+            entity.HasOne(d => d.ClientNavigation).WithMany(p => p.FavoriteClientObjects)
                 .HasForeignKey(d => d.Client)
                 .HasConstraintName("cli");
 
-            entity.HasOne(d => d.ObjectNavigation).WithMany(p => p.FavoriteClintObjects)
+            entity.HasOne(d => d.ObjectNavigation).WithMany(p => p.FavoriteClientObjects)
                 .HasForeignKey(d => d.Object)
                 .HasConstraintName("obje");
         });

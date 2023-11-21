@@ -26,14 +26,14 @@ namespace GrandReal.Controllers
 
             var objects = context.ObjectViews.Where(a=>a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.ToList();
-            var favoriteClintObjects = context.FavoriteClintObjects.Where(a=>a.Client == idUser).Select(a=>a.Object).ToList();
+            var FavoriteClientObjects = context.FavoriteClientObjects.Where(a=>a.Client == idUser).Select(a=>a.Object).ToList();
             
 
             var model = new ObjectsModel()
             {
                 Objects = objects,
                 ImagesObjects = imagesObjects,
-                FavoriteClintObjects = favoriteClintObjects
+                FavoriteClientObjects = FavoriteClientObjects
             };
             return View(model);
         }
@@ -47,18 +47,18 @@ namespace GrandReal.Controllers
 
                 #region проверка, не поставлен ли лайк уже
 
-                var checkLike = context.FavoriteClintObjects.Any(a=>a.Client == idUser && a.Object == idObject);
+                var checkLike = context.FavoriteClientObjects.Any(a=>a.Client == idUser && a.Object == idObject);
                 if (checkLike) return new { error = "Лайк уже стоит, обратитесь к раззарботчику" };
 
                 #endregion
 
-                int lastId = context.FavoriteClintObjects.Max(x => x.Id);
-                var likeRecord = new FavoriteClintObject() { 
+                int lastId = context.FavoriteClientObjects.Max(x => x.Id);
+                var likeRecord = new FavoriteClientObject() { 
                     Id = lastId+1,
                     Client = idUser,
                     Object = idObject,
                 };
-                context.FavoriteClintObjects.Add(likeRecord);
+                context.FavoriteClientObjects.Add(likeRecord);
                 context.SaveChanges();
                 return new { message = "Успешно" };
             }
@@ -75,7 +75,7 @@ namespace GrandReal.Controllers
                     return View("../Auth/Auth");
                 #endregion
 
-                var likeRecord = context.FavoriteClintObjects.FirstOrDefault(a=>a.Client == idUser && a.Object == idObject);
+                var likeRecord = context.FavoriteClientObjects.FirstOrDefault(a=>a.Client == idUser && a.Object == idObject);
 
                 #region проверка, есть ли лайк в базе
 
@@ -83,7 +83,7 @@ namespace GrandReal.Controllers
 
                 #endregion
 
-                context.FavoriteClintObjects.Remove(likeRecord);
+                context.FavoriteClientObjects.Remove(likeRecord);
                 context.SaveChanges();
                 return new { message = "Успешно" };
             }
@@ -116,15 +116,15 @@ namespace GrandReal.Controllers
                 return View("../Auth/Auth");
             #endregion
 
-            var favoriteClintObjects = context.FavoriteClintObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();
-            var objects = context.ObjectViews.Where(a => favoriteClintObjects.Contains(a.IdObject) && a.IsActive == 1).ToList();
-            var imagesObjects = context.ImagesObjects.Where(a=> favoriteClintObjects.Contains(a.Object)).ToList();
+            var FavoriteClientObjects = context.FavoriteClientObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();
+            var objects = context.ObjectViews.Where(a => FavoriteClientObjects.Contains(a.IdObject) && a.IsActive == 1).ToList();
+            var imagesObjects = context.ImagesObjects.Where(a=> FavoriteClientObjects.Contains(a.Object)).ToList();
 
             var model = new ObjectsModel()
             {
                 Objects = objects,
                 ImagesObjects = imagesObjects,
-                FavoriteClintObjects = favoriteClintObjects
+                FavoriteClientObjects = FavoriteClientObjects
             };
             return View("Index", model);
         }

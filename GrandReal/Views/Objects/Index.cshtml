@@ -59,7 +59,7 @@
                 <div class="d-flex me-3 align-items-end justify-content-end" style="height:10%">
 
                     <div id="@($"likedObject-{item?.IdObject}")" class="liked me-2">
-                        @{var liked = Model.FavoriteClintObjects.Contains(item.IdObject);}
+                        @{var liked = Model.FavoriteClientObjects.Contains(item.IdObject);}
                         <i class="@(liked ? "press" :"")"></i>
                         <span>liked!</span>
                     </div>
