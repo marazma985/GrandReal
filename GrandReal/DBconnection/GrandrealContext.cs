@@ -15,6 +15,8 @@ public partial class GrandrealContext : DbContext
     {
     }
 
+    public virtual DbSet<Application> Applications { get; set; }
+
     public virtual DbSet<Client> Clients { get; set; }
 
     public virtual DbSet<Contract> Contracts { get; set; }
@@ -32,6 +34,7 @@ public partial class GrandrealContext : DbContext
     public virtual DbSet<TypeObject> TypeObjects { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=localhost;database=grandreal;user=root;password=Marmel985.", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.34-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,6 +42,22 @@ public partial class GrandrealContext : DbContext
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
+
+        modelBuilder.Entity<Application>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("applications");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.DateCreate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("datetime")
+                .HasColumnName("date_create");
+            entity.Property(e => e.IdClient).HasColumnName("id_client");
+            entity.Property(e => e.IdObject).HasColumnName("id_object");
+            entity.Property(e => e.IdStaff).HasColumnName("id_staff");
+        });
 
         modelBuilder.Entity<Client>(entity =>
         {
@@ -223,7 +242,7 @@ public partial class GrandrealContext : DbContext
                 .HasMaxLength(27)
                 .HasColumnName("floors");
             entity.Property(e => e.FullAddress)
-                .HasMaxLength(313)
+                .HasMaxLength(315)
                 .HasColumnName("full_address");
             entity.Property(e => e.IdObject).HasColumnName("id_object");
             entity.Property(e => e.IsActive)
