@@ -23,17 +23,20 @@ namespace GrandReal.Controllers
             if (checkAuth() == null)
                 return View("../Auth/Auth");
             #endregion
+            ViewData["Title"] = "Объекты недвижимости";
 
             var objects = context.ObjectViews.Where(a=>a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.ToList();
             var FavoriteClientObjects = context.FavoriteClientObjects.Where(a=>a.Client == idUser).Select(a=>a.Object).ToList();
+            var AplicationsClient = context.Applications.Where(a=>a.IdClient == idUser).Select(a=>a.IdObject).ToList();
             
 
             var model = new ObjectsModel()
             {
                 Objects = objects,
                 ImagesObjects = imagesObjects,
-                FavoriteClientObjects = FavoriteClientObjects
+                FavoriteClientObjects = FavoriteClientObjects,
+                AplicationsClient = AplicationsClient
             };
             return View(model);
         }
@@ -115,18 +118,47 @@ namespace GrandReal.Controllers
             if (checkAuth() == null)
                 return View("../Auth/Auth");
             #endregion
+            ViewData["Title"] = "Избранные объекты";
 
             var FavoriteClientObjects = context.FavoriteClientObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();
             var objects = context.ObjectViews.Where(a => FavoriteClientObjects.Contains(a.IdObject) && a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.Where(a=> FavoriteClientObjects.Contains(a.Object)).ToList();
+            var AplicationsClient = context.Applications.Where(a => a.IdClient == idUser).Select(a => a.IdObject).ToList();
 
             var model = new ObjectsModel()
             {
                 Objects = objects,
                 ImagesObjects = imagesObjects,
-                FavoriteClientObjects = FavoriteClientObjects
+                FavoriteClientObjects = FavoriteClientObjects,
+                AplicationsClient = AplicationsClient
             };
             return View("Index", model);
+        }
+        public object SubmitApplication(int idObject)
+        {
+            try
+            {
+                #region проверка на авторизацию
+                if (checkAuth() == null)
+                    return View("../Auth/Auth");
+                #endregion
+
+                var application = new Application()
+                {
+                    IdClient = idUser,
+                    IdObject = idObject
+                };
+                context.Applications.Add(application);
+                context.SaveChanges();
+
+                return new { message = "Заявка успешно создана" };
+            }
+            catch (Exception ex)
+            {
+                return new { error = ex.Message };
+            }
+
+            
         }
     }
 }

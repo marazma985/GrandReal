@@ -7,10 +7,12 @@ html {
     font-size: 16px;
   }
 }
-
+#loadGif{
+    height:50px;
+}
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 a {
     text-decoration: none;

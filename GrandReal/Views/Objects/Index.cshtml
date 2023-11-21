@@ -1,9 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Объекты недвижимости";
-}
+﻿
 @model GrandReal.Models.ObjectsModel;
 <div class="container">
-    <h1>Объекты недвижимости</h1>
+    <h1>@ViewData["Title"]</h1>
 
     @foreach (var item in Model.Objects)
     {
@@ -64,7 +62,10 @@
                         <span>liked!</span>
                     </div>
 
-                    <button class="btn btn-outline-primary p-0" style="width:250px; height:30px;">Оставить заявку</button>
+                    <button class="btn btn-outline-primary p-0" style="width:250px; height:30px;" @(Model.AplicationsClient.Contains(item.IdObject) ? "disabled" : "") onclick="submitApplication(@item.IdObject,this)">
+                        @(Model.AplicationsClient.Contains(item.IdObject) ? "Заявка оставлена" : "Оставить заявку")                       
+
+                    </button>
                 </div>
             </div>
 

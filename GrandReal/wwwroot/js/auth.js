@@ -61,8 +61,7 @@ login = function () {
 		method: 'post',
 		data: dataFrom,
 		beforeSend: function () {
-			$('#loadGif').show();
-			myModalAlert('Обработка запроса...')
+			myModalAlert('<img id="loadGif" src="~/img/load.gif" /> Обработка запроса...')
 		},
 		success: function (data) {
 
@@ -90,8 +89,11 @@ register = function () {
 		data: {
 			client: dataFrom
 		},
+		beforeSend: function () {
+			myModalAlert('<img id="loadGif" src="~/img/load.gif" /> Обработка запроса...')
+		},
 		success: function (data) {
-			alert(data);
+			myModalAlert(data);
 		}
 	});
 }
