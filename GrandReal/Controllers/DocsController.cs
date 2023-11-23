@@ -18,12 +18,6 @@ namespace GrandReal.Controllers
             //var docs = context.Contracts.Where(a=> a.id)
             return View();
         }
-
-        // GET: DocsController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
         public int? checkAuth()
         {
             //Не получится засунуть в конструктор, так как там контекст запроса не инициализирован

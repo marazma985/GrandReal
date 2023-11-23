@@ -17,7 +17,12 @@ namespace GrandReal.Controllers
             return View("Auth");
         }
 
-        // GET: AuthController/Details/5
+        /// <summary>
+        /// Авторизация
+        /// </summary>
+        /// <param name="PhoneClient">Номер клиента</param>
+        /// <param name="PasswordClient">Пароль клиента</param>
+        /// <returns>Данные о войдённом юзере или объект с ошибкой</returns>
         public object login(string PhoneClient, string PasswordClient)
         {
             var auth = context.Clients.FirstOrDefault(c => c.PhoneClient == PhoneClient && c.PasswordClient == PasswordClient);
@@ -27,7 +32,12 @@ namespace GrandReal.Controllers
             return auth;
         }
 
-        // GET: AuthController/Create
+        /// <summary>
+        /// Регистрация
+        /// </summary>
+        /// <param name="client">объект с данными новго клиента</param>
+        /// <returns> сообщение о результате</returns>
+        ///Можно переделать под возвращаемый объект для точности в js
         public string CreateClient(Client client)
         {
             try
@@ -43,62 +53,6 @@ namespace GrandReal.Controllers
                 return $"Возникла ошибка: {ex.Message}";
             }
             
-        }
-
-        // POST: AuthController/Create
-        [HttpPost]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View("Auth");
-            }
-        }
-
-        // GET: AuthController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuthController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

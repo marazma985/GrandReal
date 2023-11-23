@@ -23,14 +23,16 @@ namespace GrandReal.Controllers
             if (checkAuth() == null)
                 return View("../Auth/Auth");
             #endregion
+            //Заголовок в шапке страницы
             ViewData["Title"] = "Объекты недвижимости";
 
+            //Сбор данных
             var objects = context.ObjectViews.Where(a=>a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.ToList();
             var FavoriteClientObjects = context.FavoriteClientObjects.Where(a=>a.Client == idUser).Select(a=>a.Object).ToList();
             var AplicationsClient = context.Applications.Where(a=>a.IdClient == idUser).Select(a=>a.IdObject).ToList();
             
-
+            //Укомлектовка в модельку
             var model = new ObjectsModel()
             {
                 Objects = objects,
@@ -40,6 +42,11 @@ namespace GrandReal.Controllers
             };
             return View(model);
         }
+        /// <summary>
+        /// Лайк объекта
+        /// </summary>
+        /// <param name="idObject">ИД объекта всё просто</param>
+        /// <returns>объект с текстом о результате</returns>
         public object LikeObject(int idObject) {
             try
             {
@@ -70,6 +77,11 @@ namespace GrandReal.Controllers
                 return new { error = ex.Message };
             }
         }
+        /// <summary>
+        /// Аналогично лайку
+        /// </summary>
+        /// <param name="idObject"></param>
+        /// <returns></returns>
         public object RemoveLikeObject(int idObject) {
             try
             {
@@ -111,20 +123,26 @@ namespace GrandReal.Controllers
 
             return null;
         }
-
+        /// <summary>
+        /// Страница избранных объектов
+        /// </summary>
+        /// <returns></returns>
         public ActionResult FavoriteObjects()
         {
             #region проверка на авторизацию
             if (checkAuth() == null)
                 return View("../Auth/Auth");
             #endregion
+
             ViewData["Title"] = "Избранные объекты";
 
+            //Сбор данных
             var FavoriteClientObjects = context.FavoriteClientObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();
             var objects = context.ObjectViews.Where(a => FavoriteClientObjects.Contains(a.IdObject) && a.IsActive == 1).ToList();
             var imagesObjects = context.ImagesObjects.Where(a=> FavoriteClientObjects.Contains(a.Object)).ToList();
             var AplicationsClient = context.Applications.Where(a => a.IdClient == idUser).Select(a => a.IdObject).ToList();
 
+            //Укомлектовка в модельку
             var model = new ObjectsModel()
             {
                 Objects = objects,
@@ -134,6 +152,12 @@ namespace GrandReal.Controllers
             };
             return View("Index", model);
         }
+        /// <summary>
+        /// Создание заявки на покупку объекта
+        /// </summary>
+        /// <param name="idObject"></param>
+        /// <returns></returns>
+        /// TODO: не хватает ИД содрудника, так и не понял как его достать
         public object SubmitApplication(int idObject)
         {
             try
@@ -160,6 +184,10 @@ namespace GrandReal.Controllers
 
             
         }
+        /// <summary>
+        /// Страница Заявок
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ApplicationsObjects()
         {
             #region проверка на авторизацию
@@ -182,6 +210,10 @@ namespace GrandReal.Controllers
             };
             return View("Index", model);
         }
+        /// <summary>
+        /// Страница для заявки на продажу объекта
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SellObject()
         {
             #region проверка на авторизацию
@@ -193,6 +225,10 @@ namespace GrandReal.Controllers
 
             return View("SellObject");
         }
+        /// <summary>
+        /// Страница для заявки на личную заявку подбора объекта
+        /// </summary>
+        /// <returns></returns>
         public ActionResult PersonalRequestSearchObject()
         {
             #region проверка на авторизацию

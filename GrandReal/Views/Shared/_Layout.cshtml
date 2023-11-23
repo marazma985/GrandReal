@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-    @* Что бы не проверять успешность конвертации в bool *@
+    @* Тоже костыль для скрытия шапки при авторизации *@
     @if (ViewData["Title"].ToString() != "Авторизация")
     {
         <header>
@@ -63,7 +63,7 @@
             @RenderBody()
         </main>
     </div>
-
+    @* Моё модальное окно думаю разберёшься, написано не сложно по сравнению с решениями из инета*@
     <div class="myModalBackground myModalHide">
         <div class="myModal">
             <div class="titleModal">

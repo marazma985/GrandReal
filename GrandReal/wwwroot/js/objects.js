@@ -1,5 +1,7 @@
 ﻿
 document.addEventListener("DOMContentLoaded", function (event) {
+
+	//Вешает обработчик события на каждый лайк
     $(function () {
 		$(".liked i").on('click', function () {
 			var idObject = Number($(this).parent().attr('id').replace('likedObject-', ''));
@@ -8,12 +10,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 });
+//В зависимости от состояния лайка направляет на функцию удаления лайка или добавления
 likeOrRemoveLikeObject = function (elem, idObject) {
 	if (!$(elem).hasClass("press"))
 		likeObject(elem, idObject);
 	else
 		removeLikeObject(elem, idObject);
 }
+//Запрос на лайк, если всё ок то запускает анимацию
 likeObject = function (elem, idObject) {
 	$.ajax({
 		url: '/Objects/LikeObject',
@@ -35,6 +39,7 @@ likeObject = function (elem, idObject) {
 		}
 	});
 }
+//Аналогично с функцией выше
 removeLikeObject = function (elem, idObject) {
 	$.ajax({
 		url: '/Objects/RemoveLikeObject',
@@ -55,6 +60,7 @@ removeLikeObject = function (elem, idObject) {
 		}
 	});
 }
+//Оставление запроса
 submitApplication = function (idObject, elem) {
 	$.ajax({
 		url: '/Objects/SubmitApplication',

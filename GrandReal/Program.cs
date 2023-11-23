@@ -15,7 +15,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Enable directory browsing
+// Открытие папкий для чтения, что бы динамически програжать их на странице
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
