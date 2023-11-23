@@ -1,55 +1,10 @@
 ﻿
 <div>
     <h1>@ViewData["Title"]</h1>
-    <div class="sellContainer">
-        <div class="w-45">
-            <div class="dragZone d-none">
-                +
-            </div> 
-            <div id="carouselObject1" class="carousel slide carouselDiv" data-bs-ride="carousel" data-bs-interval="false">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselObject1" data-bs-slide-to="0" class="active" aria-label="" aria-current="true">
-                    </button>
-                    <button type="button" data-bs-target="#carouselObject1" data-bs-slide-to="1" class="" aria-label="">
-                    </button>
-                    <button type="button" data-bs-target="#carouselObject1" data-bs-slide-to="2" class="" aria-label="">
-                    </button>
-                    <button type="button" data-bs-target="#carouselObject1" data-bs-slide-to="3" class="" aria-label="">
-                    </button>
-                    <button type="button" data-bs-target="#carouselObject1" data-bs-slide-to="4" class="" aria-label="">
-                    </button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/files/img/1/ob1im1.png" alt="Фото не найдено">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/files/img/1/ob1im2.png" alt="Фото не найдено">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/files/img/1/ob1im3.png" alt="Фото не найдено">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/files/img/1/ob1im4.png" alt="Фото не найдено">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/files/img/1/ob1im5.png" alt="Фото не найдено">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselObject1" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselObject1" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <button class="w-100 btn btn-primary mt-2">Загрузить фото</button>
-            <input id="files" name="files" type="file" hidden /> 
-        </div>
-        <div class="w-45 formSell">
-            <div class="text-field text-field_floating-3 w-45">
+    <div class="requestContainer">
+        
+        <div class="w-100 formRequest">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="TypeObject" class="text-field__input" placeholder="Тип объекта" list="typeObject" required>
                 <label class="text-field__label" for="TypeObject">Тип объекта</label>
                 <datalist id="typeObject">
@@ -60,50 +15,46 @@
                 </datalist>
 
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="PriceObject" class="text-field__input numbersOnly" placeholder="Стоимость" type="text" required>
                 <label class="text-field__label" for="PriceObject">Стоимость</label>
                 <label class="cymbolInput">Руб.</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="NumRoomsObject" class="text-field__input numbersOnly" placeholder="Кол-во комнат" type="text" maxlength="2" required>
                 <label class="text-field__label" for="NumRoomsObject">Кол-во комнат</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="LivingAreaObject" class="text-field__input numbersOnly" placeholder="Площать помещения" maxlength="3" type="text" required>
                 <label class="text-field__label" for="LivingAreaObject">Площать помещения</label>
                 <label class="cymbolInput">м<sup>2</sup></label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="PlotAreaObject" class="text-field__input numbersOnly" placeholder="Площать участка" maxlength="3" type="text" required>
                 <label class="text-field__label" for="PlotAreaObject">Площать участка</label>
                 <label class="cymbolInput">м<sup>2</sup></label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="FloorObject" class="text-field__input numbersOnly" placeholder="Этаж" maxlength="3" type="text" required>
                 <label class="text-field__label" for="FloorObject">Этаж</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="TotalFloor" class="text-field__input numbersOnly" placeholder="Кол-во этажей" maxlength="3" type="text" required>
                 <label class="text-field__label" for="TotalFloor">Кол-во этажей</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="Flat" class="text-field__input numbersOnly" placeholder="Квартира" maxlength="3" type="text" required>
                 <label class="text-field__label" for="Flat">Квартира</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="CityObject" class="text-field__input" placeholder="Город" type="text" required>
                 <label class="text-field__label" for="CityObject">Город</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
+            <div class="text-field text-field_floating-3 w-25">
                 <input name="DistrictObject" class="text-field__input" placeholder="Район" type="text" required>
                 <label class="text-field__label" for="DistrictObject">Район</label>
             </div>
-            <div class="text-field text-field_floating-3 w-45">
-                <input name="AddressObject" class="text-field__input" placeholder="Адрес" type="text" required>
-                <label class="text-field__label" for="AddressObject">Адрес (улица дом)</label>
-            </div>
-            <div class="dropdown-selectStaff w-45">
+            <div class="dropdown-selectStaff w-25">
                 <div id="selectStaffDefault" class="selectStaff">
                     <h5>Выберите риелтора &#9660;</h5>
                 </div>

@@ -166,7 +166,7 @@ namespace GrandReal.Controllers
             if (checkAuth() == null)
                 return View("../Auth/Auth");
             #endregion
-            ViewData["Title"] = "Оставленные заявки";
+            ViewData["Title"] = "Заявки";
 
             var FavoriteClientObjects = context.FavoriteClientObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();               
             var AplicationsClient = context.Applications.Where(a => a.IdClient == idUser).Select(a => a.IdObject).ToList();
@@ -192,6 +192,17 @@ namespace GrandReal.Controllers
 
 
             return View("SellObject");
+        }
+        public ActionResult PersonalRequestSearchObject()
+        {
+            #region проверка на авторизацию
+            if (checkAuth() == null)
+                return View("../Auth/Auth");
+            #endregion
+            ViewData["Title"] = "Создать личную заявку";
+
+
+            return View("PersonalRequestSearchObject");
         }
     }
 }

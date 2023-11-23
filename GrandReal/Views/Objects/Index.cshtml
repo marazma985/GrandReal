@@ -2,6 +2,41 @@
 @model GrandReal.Models.ObjectsModel;
 <div class="container">
     <h1>@ViewData["Title"]</h1>
+    @if (ViewData["Title"] == "Заявки")
+    {
+        <div class="objectCard d-flex justify-content-between mb-5" style="border-radius:15px;overflow: hidden">
+
+            <div style="width:40%; height:250px;" class="d-flex justify-content-center">
+                <img src="~/img/home.png" class="h-100" />
+            </div>
+
+            <div class="p-3 pb-1 w-75 d-flex flex-column mb-2">
+                <div style="height:20%" class="d-flex justify-content-between">
+                    <h3 style="font-style: italic; Letter-spacing:2px;">
+                        1-к. Квартира
+                    </h3>
+                    <h3 style="font-style: italic; Letter-spacing:2px;">15 000 000 ₽</h3>
+                </div>
+
+                <div style="height:70%">
+                    <p>г. Москва, р-н Центральный</p>
+                    <p class="fs-5">*Ваша личная заявка на подбор объекта недвижимости</p>
+                </div>
+
+
+                <div class="d-flex me-3 align-items-end justify-content-end" style="height:10%">
+
+
+                    <button class="btn btn-outline-primary p-0" style="width:250px; height:30px;" disabled>
+                        @(true ? "Заявка оставлена" : "Оставить заявку")
+
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    }
+    
 
     @foreach (var item in Model.Objects)
     {
@@ -52,6 +87,19 @@
 
                 <div style="height:70%">
                     <p>@item.FullAddress</p>
+                    <p class="fs-5 m-0 mx-3">Риелтор:</p>
+                    <div class="dropdownElement">
+                        <img src="~/img/staff.png" height="90px" />
+                        <div class="d-flex flex-column justify-content-around">
+                            <p class="fs-6 m-0 ">Иванов Иван Иванович</p>
+                            <div class="d-flex starDiv h-25">
+                                <img src="~/img/star.png" />
+                                <img src="~/img/star.png" />
+                                <img src="~/img/star.png" />
+                                <img src="~/img/star.png" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="d-flex me-3 align-items-end justify-content-end" style="height:10%">
