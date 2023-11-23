@@ -35,6 +35,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="FavoriteObjects">Избранные объекты</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="ApplicationsObjects">Заявки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Docs" asp-action="Index">Документы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Objects" asp-action="SellObject">Продать</a>
+                            </li>
                         </ul>
                     </div>
                     <div id="userAuth" class="d-flex">
@@ -59,7 +68,7 @@
                 <div class="cross" onclick="closeMyAlert()"></div>
             </div>
             <div class="bodyModal d-flex">
-                <img id="loadGif" src="~/img/load.gif" />
+                @* <img id="loadGif" src="~/img/load.gif" />  *@
                 <div class="fs-5">Произошёл сбой</div>
                 <p class="fs-5"></p>
             </div>

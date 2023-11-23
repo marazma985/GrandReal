@@ -160,5 +160,38 @@ namespace GrandReal.Controllers
 
             
         }
+        public ActionResult ApplicationsObjects()
+        {
+            #region проверка на авторизацию
+            if (checkAuth() == null)
+                return View("../Auth/Auth");
+            #endregion
+            ViewData["Title"] = "Оставленные заявки";
+
+            var FavoriteClientObjects = context.FavoriteClientObjects.Where(a => a.Client == idUser).Select(a => a.Object).ToList();               
+            var AplicationsClient = context.Applications.Where(a => a.IdClient == idUser).Select(a => a.IdObject).ToList();
+            var objects = context.ObjectViews.Where(a => AplicationsClient.Contains(a.IdObject) && a.IsActive == 1).ToList();
+            var imagesObjects = context.ImagesObjects.Where(a => AplicationsClient.Contains(a.Object ?? 0)).ToList();
+
+            var model = new ObjectsModel()
+            {
+                Objects = objects,
+                ImagesObjects = imagesObjects,
+                FavoriteClientObjects = FavoriteClientObjects,
+                AplicationsClient = AplicationsClient
+            };
+            return View("Index", model);
+        }
+        public ActionResult SellObject()
+        {
+            #region проверка на авторизацию
+            if (checkAuth() == null)
+                return View("../Auth/Auth");
+            #endregion
+            ViewData["Title"] = "Продать объект";
+
+
+            return View("SellObject");
+        }
     }
 }

@@ -63,7 +63,7 @@ submitApplication = function (idObject, elem) {
 			idObject: idObject
 		},
 		beforeSend: function () {
-			myModalAlert('<img id="loadGif" src="~/img/load.gif" /> Обработка запроса...')
+			myModalAlert('<img id="loadGif" src="/img/load.gif" /> Обработка запроса...')
 		},
 		success: function (data) {
 			closeMyAlert();
